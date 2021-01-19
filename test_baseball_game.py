@@ -1,4 +1,3 @@
-# -*- coding: utf8 -*-
 
 import unittest
 import baseball_game as bg

@@ -258,38 +258,44 @@ def is_no(one_more_input):
     return False
     # ==================================
 
+def is_end():
+    print("Thank you for using this program")
+    print("End of the Game")
 
 
 def main():
     Flag = True
+    print("Play Baseball")
     while Flag:
-        print("Play Baseball")
-        while Flag:  
-            random_number = str(get_not_duplicated_three_digit_number())
-            print("Random Number is : ", random_number)
+        random_number = str(get_not_duplicated_three_digit_number())
+        print("Random Number is : ", random_number)
+        while Flag:             
             user_input = input('Input guess number : ')
+            if user_input=="0":
+                is_end()
+                return
+
             while not is_validated_number(user_input):
                 print("Wrong Input, Input again")
                 user_input = input('Input guess number : ')
+                if user_input=="0":
+                    is_end()
+                    return
             
             strikes, balls = get_strikes_or_ball(user_input, random_number)
             print(f"Strikes : {strikes} , Balls : {balls}")
             if strikes ==3:
                 break
-        one_more_input = input('You win, one more(Y/N) ?')
-        while not is_yes(one_more_input) and not is_no(one_more_input) and one_more_input !='0':
-            print("Wrong Input, Input again")
+        if Flag:
             one_more_input = input('You win, one more(Y/N) ?')
-        if one_more_input == '0' or is_no(one_more_input):
-            Flag=False
-
-    # ===Modify codes below=============
-    # 위의 코드를 포함하여 자유로운 수정이 가능함
+            
+            while not is_yes(one_more_input) and not is_no(one_more_input) and one_more_input !='0':
+                print("Wrong Input, Input again")
+                one_more_input = input('You win, one more(Y/N) ?')
+            if one_more_input == "0" or is_no(one_more_input):
+                Flag=False
+     is_end()
     
-
-    # ==================================
-    print("Thank you for using this program")
-    print("End of the Game")
 
 if __name__ == "__main__":
     main()

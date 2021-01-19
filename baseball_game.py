@@ -294,7 +294,7 @@ def main():
                 one_more_input = input('You win, one more(Y/N) ?')
             if one_more_input == "0" or is_no(one_more_input):
                 Flag=False
-     is_end()
+    is_end()
     
 
 if __name__ == "__main__":

@@ -31,9 +31,12 @@ def is_digit(user_input_number):
     # '''
     # ===Modify codes below=============
     # 조건에 따라 변환되어야 할 결과를 result 변수에 할당
-    if user_input_number == str(int(user_input_number)):
-        return True
-    return False
+    try:
+        if user_input_number == str(int(user_input_number)):
+            return True
+        return False
+    except:
+        return False
     # ==================================
     
 
@@ -91,9 +94,9 @@ def is_duplicated_number(three_digit):
     for digit in three_digit:
         ck[int(digit)]+=1
         if ck[int(digit)] >1:
-            return False
+            return True
     # ==================================
-    return True
+    return False
 
 
 def is_validated_number(user_input_number):
@@ -118,7 +121,7 @@ def is_validated_number(user_input_number):
     # '''
     # ===Modify codes below=============
     # 조건에 따라 변환되어야 할 결과를 result 변수에 할당
-    if is_digit(user_input_number) and is_between_100_and_999(user_input_number) and is_duplicated_number(user_input_number):
+    if is_digit(user_input_number) and is_between_100_and_999(user_input_number) and not is_duplicated_number(user_input_number):
         return True
     return False
     # ==================================
@@ -145,9 +148,9 @@ def get_not_duplicated_three_digit_number():
     # ===Modify codes below=============
     # 조건에 따라 변환되어야 할 결과를 result 변수에 할당
     # get_random_number() 함수를 사용하여 random number 생성
-    number = get_random_number()
-    while not is_duplicated_number(number):
-        number = get_random_number()
+    number = str(get_random_number())
+    while is_duplicated_number(number):
+        number = str(get_random_number())
     return number    
     # ==================================
 
